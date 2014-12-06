@@ -1,0 +1,128 @@
+<html><head>
+    <title>DivinanceMC - 1</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link href="/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<link rel="shortcut icon" href="/css/icon.png" type="/image/x-icon">
+  </head>
+
+  <body>
+    <div class="navbar navbar-default">
+      <div class="container"> 
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a class="navbar-brand" href="/">DivinanceMC</a>
+        </div>
+
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav">
+              <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+			  <li><a href="/projects"><i class="fa fa-code"></i> Projects</a></li>
+			  <li><a href="/portfolio"><i class="fa fa-folder-open"></i> Portfolio</a></li>
+			  <li class="active"><a href="/servers"><i class="fa fa-users"></i> Servers</a></li>
+
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+			<li><a href="/contact"><i class="fa fa-envelope"></i> Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  <body>
+  
+	    <div class="container">
+      <h1><i class="fa fa-file"></i> Coding with Venny - Episode 1 - Heal</h1>
+	  
+	  <br>
+	  <br>
+	  
+	  <div class="container">
+<div class="page-header">
+</span>
+</h1>
+</div>
+<h3>
+<code>Heal.java</code>
+<small>
+<i class="fa fa-clock-o"></i> <span rel="tooltip" data-original-title="03:55:06 PM" data-placement="top">12-6-14</span> · <i class="fa fa-code"></i> java </small>
+</h3>
+<textarea id="pastecontent" style="display: none;" readonly=""> public void onEnable() {
+                getServer().getPluginManager().registerEvents(this, this);
+                
+                this.getCommand("ban").setExecutor(new Ban());
+                
+                
+                
+package DivinanceMC.MelonCore;
+
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+public class Heal implements CommandExecutor {
+
+	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+        
+        if (!(sender instanceof Player)) {
+        		sender.sendMessage(MelonCore.Prefix + "This command is disabled for " + ChatColor.YELLOW + "Console" + ChatColor.GRAY + ".");
+                return true;
+        }
+       
+        Player player = (Player) sender;
+       
+        if (cmd.getName().equalsIgnoreCase("heal")) {
+        	if (! sender.hasPermission("meloncore.heal")) {
+    			sender.sendMessage(MelonCore.Prefix + "You don't have permission to use this command.");
+    			return true;
+    			}
+        
+                if (args.length == 0) {
+                        player.setHealth(20);
+                        player.sendMessage(MelonCore.Prefix + "You've been healed by " + ChatColor.YELLOW + sender.getName() + ChatColor.GRAY + ".");
+                        return true;  
+                }
+                
+                Player target = Bukkit.getServer().getPlayer(args[0]);
+                if (target == null) {
+                		player.sendMessage(MelonCore.Prefix + ChatColor.YELLOW + args[0] + ChatColor.GRAY + " is not online.");
+                        return true;
+                }
+                
+                target.setHealth(20);
+                target.sendMessage(MelonCore.Prefix + "You've been healed by " + ChatColor.YELLOW + sender.getName() + ChatColor.GRAY + ".");
+                player.sendMessage(MelonCore.Prefix + "You've healed " + ChatColor.YELLOW + target.getName() + ChatColor.GRAY + ".");   
+        		}
+        
+		return false;
+		}
+	
+}</textarea>
+</div>
+
+</div>
+	  
+<br>
+
+<hr>
+
+	   <div class="row">
+    <div class="col-lg-12">
+      <div class="col-md-8">
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+  </div>
+  
+</body></html>
