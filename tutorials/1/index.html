@@ -37,10 +37,61 @@
     </div>
 
   <body>
+	<center>
+        <pre class=" language-html" data-number=""><code class=" language-html"> public void onEnable() {
+                getServer().getPluginManager().registerEvents(this, this);
+                
+                this.getCommand("ban").setExecutor(new Ban());
+                
+                
+                
+package DivinanceMC.MelonCore;
 
-        <pre class=" language-html" data-number=""><code class=" language-html">textarea {
-  resize: none;
-}<div class="line-number" data-start="1" style="top: 0px;"></div><div class="line-number" data-start="2" style="top: 19px;"></div><div class="line-number" data-start="3" style="top: 38px;"></div></code></pre>
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+public class Heal implements CommandExecutor {
+
+	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+        
+        if (!(sender instanceof Player)) {
+        		sender.sendMessage(MelonCore.Prefix + "This command is disabled for " + ChatColor.YELLOW + "Console" + ChatColor.GRAY + ".");
+                return true;
+        }
+       
+        Player player = (Player) sender;
+       
+        if (cmd.getName().equalsIgnoreCase("heal")) {
+        	if (! sender.hasPermission("meloncore.heal")) {
+    			sender.sendMessage(MelonCore.Prefix + "You don't have permission to use this command.");
+    			return true;
+    			}
+        
+                if (args.length == 0) {
+                        player.setHealth(20);
+                        player.sendMessage(MelonCore.Prefix + "You've been healed by " + ChatColor.YELLOW + sender.getName() + ChatColor.GRAY + ".");
+                        return true;  
+                }
+                
+                Player target = Bukkit.getServer().getPlayer(args[0]);
+                if (target == null) {
+                		player.sendMessage(MelonCore.Prefix + ChatColor.YELLOW + args[0] + ChatColor.GRAY + " is not online.");
+                        return true;
+                }
+                
+                target.setHealth(20);
+                target.sendMessage(MelonCore.Prefix + "You've been healed by " + ChatColor.YELLOW + sender.getName() + ChatColor.GRAY + ".");
+                player.sendMessage(MelonCore.Prefix + "You've healed " + ChatColor.YELLOW + target.getName() + ChatColor.GRAY + ".");   
+        		}
+        
+		return false;
+		}
+	
+}<div class="line-number" data-start="1" style="top: 0px;"></div><div class="line-number" data-start="2" style="top: 19px;"></div><div class="line-number" data-start="3" style="top: 38px;"></div></code></pre></center>
 	  
 <br>
 
